@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import { Typewriter } from 'react-simple-typewriter';
 
 const Homepage = () => {
@@ -21,7 +22,7 @@ const Homepage = () => {
             </h1>
             <p className="text-5xl md:text-5xl text-white mb-8 h-12">
               <Typewriter
-                words={['A Developer','A UI/UX Designer', 'A Graphic Designer', 'A Video Editor', 'An Avid Gamer']}
+                words={['A Developer', 'A UI/UX Designer', 'A Graphic Designer', 'A Video Editor', 'An Avid Gamer']}
                 loop={0}
                 cursor
                 cursorStyle="_"
@@ -34,11 +35,13 @@ const Homepage = () => {
 
           {/* Right Image */}
           <div className="md:w-1/2 flex justify-center">
-            <div className="w-[23rem] h-[38rem] rounded-full overflow-hidden border-4 border-primary shadow-lg">
-              <img
+            <div className="w-[23rem] h-[38rem] rounded-full overflow-hidden border-4 border-primary shadow-lg relative">
+              <Image
                 src="/path/to/your/profile-picture.jpg"
                 alt="Profile"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                priority
               />
             </div>
           </div>

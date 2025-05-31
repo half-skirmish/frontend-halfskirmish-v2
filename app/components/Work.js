@@ -182,7 +182,7 @@ const Work = () => {
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-6">
             A curated collection of projects where creativity meets functionality.
             From front-end development to UI/UX design and visual storytelling —
-            here's what I’ve built.
+            here&apos; s what I have built.
           </p>
 
           <WorkMenu
