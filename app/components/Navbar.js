@@ -5,18 +5,43 @@ import { Menu, X } from 'lucide-react';
 const Navbar = () => {
   const [isDark, setIsDark] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [title, setTitle] = useState('Naman Chaturvedi');
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDark);
   }, [isDark]);
 
+  useEffect(() => {
+    const titles = ['Naman Chaturvedi', 'Half Skirmish'];
+    let index = 0;
+
+    const interval = setInterval(() => {
+      // Start fade out
+      setVisible(false);
+
+      // After fade-out duration (500ms), change the title and fade in
+      setTimeout(() => {
+        index = (index + 1) % titles.length;
+        setTitle(titles[index]);
+        setVisible(true);
+      }, 500); // Fade-out duration
+    }, 3500); // Total cycle duration (500ms fade out + 3000ms display)
+
+    return () => clearInterval(interval);
+  }, []);
+
   const navItems = ['Home', 'Work', 'About Me'];
 
   return (
     <nav className="absolute top-6 left-0 w-full z-50 px-8 flex items-center justify-between">
-      {/* Logo */}
-      <div className="text-lg font-bold text-black dark:text-white">
-        Half Skirmish
+      {/* Logo with dissolve animation */}
+      <div
+        className={`text-lg font-bold text-black dark:text-white transition-opacity duration-500 ${
+          visible ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        {title}
       </div>
 
       {/* Desktop Menu */}
