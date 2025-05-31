@@ -180,9 +180,9 @@ const Work = () => {
             My <span className="text-[#5EFF7C]">Work</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-6">
-            A curated collection of projects where creativity meets functionality.
-            From front-end development to UI/UX design and visual storytelling —
-            here&apos; s what I have built.
+           From Video Editing & Graphic Designing to UI/UX & Development,
+           I have worked in various fields.
+           Hover onto anyone of the options below to view my contributions in that particular domain.
           </p>
 
           <WorkMenu
