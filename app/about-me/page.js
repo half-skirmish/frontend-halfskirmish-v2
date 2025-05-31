@@ -21,14 +21,14 @@ export default function AboutMePage() {
               About <span className="text-[#5EFF7C]">Me</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-6">
-              Hey! I'm Naman Chaturvedi — a passionate designer and developer with a love for creativity and technology.
+              Hey! I am Naman Chaturvedi — a passionate designer and developer with a love for creativity and technology.
               From designing intuitive UI/UX interfaces and graphics to editing videos and building modern web experiences,
               I enjoy crafting things that make an impact.
             </p>
 
             <p className="text-md md:text-lg text-gray-400 max-w-2xl mx-auto mb-6">
               I started my journey in graphic design and gradually expanded into UI/UX and full-stack development.
-              I believe design is not just how it looks — it’s how it works. I'm always experimenting, learning, and pushing boundaries.
+              I believe design is not just how it looks — it&rsquo;s how it works. I&rsquo;m always experimenting, learning, and pushing boundaries.
             </p>
 
             <p className="text-md md:text-lg text-gray-400 max-w-2xl mx-auto">
