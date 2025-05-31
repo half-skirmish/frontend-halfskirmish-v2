@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     echo 'Bringing up containers using docker-compose...'
-                    sh 'sudo docker compose up -d --build'
+                    sh 'docker compose up -d --build'
                 }
             }
         }
