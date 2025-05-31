@@ -1,16 +1,17 @@
 version: '3.8'
-
+ 
 services:
-  names_portfolio:
-    container_name: names_portfolio
-    build: .
+  namans_portfolio:
+    container_name: namans_portfolio
+    image: namans_portfolio_image:latest
     ports:
-      - "3000:3000"
+      - "3000:3069"
     networks:
       - app_network
     environment:
       - NODE_ENV=production
-
+ 
 networks:
   app_network:
-    driver: bridge
+    external: true
+    name: config_app_network
