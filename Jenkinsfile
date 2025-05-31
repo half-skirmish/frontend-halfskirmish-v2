@@ -1,15 +1,51 @@
-version: '3.8'
-services:
-  names_portfolio:
-    container_name: names_portfolio
-    build: .
-    ports:
-      - "3000:3000"
-    networks:
-      - app_network
-    environment:
-      - NODE_ENV=production
+pipeline {
+    agent any
 
-networks:
-  app_network:
-    driver: bridge
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    echo 'Building Docker Image...'
+                    sh 'docker build -t names_portfolio .'
+                }
+            }
+        }
+
+        stage('Stop and Remove Existing Container') {
+            steps {
+                script {
+                    echo 'Stopping and removing existing container if it exists...'
+                    sh '''
+                        if [ $(docker ps -q -f name=names_portfolio) ]; then
+                            docker stop names_portfolio
+                            docker rm names_portfolio
+                        fi
+                    '''
+                }
+            }
+        }
+
+        stage('Docker Compose Up') {
+            steps {
+                script {
+                    echo 'Bringing up containers using docker-compose...'
+                    sh 'sudo docker compose up -d --build'
+                }
+            }
+        }
+
+        stage('Remove Dangling Images') {
+            steps {
+                script {
+                    echo 'Removing untagged (dangling) images...'
+                    sh '''
+                        dangling_images=$(docker images -f "dangling=true" -q)
+                        if [ -n "$dangling_images" ]; then
+                            docker rmi $dangling_images || true
+                        fi
+                    '''
+                }
+            }
+        }
+    }
+}
