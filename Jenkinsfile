@@ -3,10 +3,10 @@ pipeline {
 
     stages {
         stage('Build Docker Image') {
-            steps {
-                script {
-                    echo 'Building Docker Image...'
-                    sh 'docker build -t names_portfolio .'
+    steps {
+        script {
+            echo 'Building Docker Image...'
+            sh 'docker build -t namans_portfolio_image:latest .'
                 }
             }
         }
@@ -49,3 +49,4 @@ pipeline {
         }
     }
 }
+ 
