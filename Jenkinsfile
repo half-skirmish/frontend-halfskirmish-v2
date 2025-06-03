@@ -1,52 +1,49 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = "namans_portfolio_image"
+        TAG = "latest"
+        REGISTRY = "192.168.1.2:30003"
+    }
+
     stages {
         stage('Build Docker Image') {
-    steps {
-        script {
-            echo 'Building Docker Image...'
-            sh 'docker build -t namans_portfolio_image:latest .'
+            steps {
+                script {
+                    echo 'Building Docker Image...'
+                    sh "docker build -t ${IMAGE_NAME}:${TAG} ."
                 }
             }
         }
 
-        stage('Stop and Remove Existing Container') {
+        stage('Tag Image for Registry') {
             steps {
                 script {
-                    echo 'Stopping and removing existing container if it exists...'
-                    sh '''
-                        if [ $(docker ps -q -f name=names_portfolio) ]; then
-                            docker stop names_portfolio
-                            docker rm names_portfolio
-                        fi
-                    '''
+                    echo 'Tagging image for remote registry...'
+                    sh "docker tag ${IMAGE_NAME}:${TAG} ${REGISTRY}/${IMAGE_NAME}:${TAG}"
                 }
             }
         }
 
-        stage('Docker Compose Up') {
+        stage('Push Image to Registry') {
             steps {
                 script {
-                    echo 'Bringing up containers using docker-compose...'
-                    sh 'docker compose up -d --build'
+                    echo 'Pushing Docker Image to Registry...'
+                    // Optional login step if auth is required:
+                    // sh "docker login ${REGISTRY} -u <username> -p <password>"
+                    sh "docker push ${REGISTRY}/${IMAGE_NAME}:${TAG}"
                 }
             }
         }
 
-        stage('Remove Dangling Images') {
+        stage('Remove Local Image (Optional)') {
             steps {
                 script {
-                    echo 'Removing untagged (dangling) images...'
-                    sh '''
-                        dangling_images=$(docker images -f "dangling=true" -q)
-                        if [ -n "$dangling_images" ]; then
-                            docker rmi $dangling_images || true
-                        fi
-                    '''
+                    echo 'Removing local image to save space (optional)...'
+                    sh "docker rmi ${REGISTRY}/${IMAGE_NAME}:${TAG} || true"
                 }
             }
         }
     }
 }
- 

@@ -17,16 +17,13 @@ const Navbar = () => {
     let index = 0;
 
     const interval = setInterval(() => {
-      // Start fade out
       setVisible(false);
-
-      // After fade-out duration (500ms), change the title and fade in
       setTimeout(() => {
         index = (index + 1) % titles.length;
         setTitle(titles[index]);
         setVisible(true);
-      }, 500); // Fade-out duration
-    }, 3500); // Total cycle duration (500ms fade out + 3000ms display)
+      }, 500);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, []);
@@ -37,7 +34,7 @@ const Navbar = () => {
     <nav className="absolute top-6 left-0 w-full z-50 px-8 flex items-center justify-between">
       {/* Logo with dissolve animation */}
       <div
-        className={`text-lg font-bold text-black dark:text-white transition-opacity duration-500 ${
+        className={`text-lg font-bold !text-white transition-opacity duration-500 ${
           visible ? 'opacity-100' : 'opacity-0'
         }`}
       >
