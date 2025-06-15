@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { Typewriter } from 'react-simple-typewriter';
+import { FaLinkedin, FaBehance, FaGithub } from 'react-icons/fa';
 
 const Homepage = () => {
   return (
@@ -31,11 +32,45 @@ const Homepage = () => {
                 delaySpeed={1000}
               />
             </p>
+
+            {/* Social Links */}
+            <div className="flex justify-center md:justify-start gap-6 mt-6">
+              <a
+                href="https://www.linkedin.com/in/naman1905"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-[#5EFF7C] transition duration-300 text-2xl"
+              >
+                <FaLinkedin />
+              </a>
+              <a
+                href="https://github.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-[#5EFF7C] transition duration-300 text-2xl"
+              >
+                <FaGithub />
+              </a>
+               <a
+                href="https://www.behance.net/naman1905"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-[#5EFF7C] transition duration-300 text-2xl"
+              >
+                <FaBehance />
+              </a>
+            </div>
           </div>
 
-          {/* Right Image */}
-          <div className="md:w-1/2 flex justify-center">
-            <div className="w-[23rem] h-[38rem] rounded-full overflow-hidden border-4 border-primary shadow-lg relative">
+          {/* Right Image with Circles */}
+          <div className="md:w-1/2 flex justify-center relative">
+            {/* Circle 1 */}
+            <div className="absolute -top-6 -left-1 w-38 h-38 rounded-full bg-[#5EFF7C] opacity-100 z-0" />
+            {/* Circle 2 */}
+            <div className="absolute -bottom-10 -right-10 w-52 h-52 rounded-full bg-[#5EFF7C] opacity-100 z-0" />
+
+            {/* Profile Image */}
+            <div className="w-[19rem] h-[32rem] rounded-full overflow-hidden border-4 border-primary shadow-lg relative z-10">
               <Image
                 src="/path/to/your/profile-picture.jpg"
                 alt="Profile"
