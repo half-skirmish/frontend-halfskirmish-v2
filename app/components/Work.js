@@ -9,44 +9,23 @@ const projects = [
     title: 'Development',
     slug: 'uiux-case-study',
     url: 'https://www.behance.net/development-project',
-    images: [
-      '/images/uiux1.png',
-      '/images/uiux2.png',
-      '/images/uiux3.png',
-      '/images/uiux4.png',
-      '/images/uiux5.png',
-      '/images/uiux6.png',
-    ],
+    images: ['/images/uiux1.png', '/images/uiux2.png', '/images/uiux3.png'],
   },
   {
     title: 'Graphic Design',
     slug: 'graphic-design',
     url: 'https://www.behance.net/graphic-design-project',
-    images: [
-      '/images/graphic1.png',
-      '/images/graphic2.png',
-      '/images/graphic3.png',
-      '/images/graphic4.png',
-      '/images/graphic5.png',
-      '/images/graphic6.png',
-    ],
+    images: ['/images/graphic1.png', '/images/graphic2.png', '/images/graphic3.png'],
   },
   {
     title: 'Video Editing',
     slug: 'video-editing',
     url: 'https://www.behance.net/video-editing-project',
-    images: [
-      '/images/video1.png',
-      '/images/video2.png',
-      '/images/video3.png',
-      '/images/video4.png',
-      '/images/video5.png',
-      '/images/video6.png',
-    ],
+    images: ['/images/video1.png', '/images/video2.png', '/images/video3.png'],
   },
 ];
 
-const WorkMenu = ({ projects, hoveredIndex, setHoveredIndex }) => (
+const WorkMenu = ({ projects, hoveredIndex, setHoveredIndex, isMobile }) => (
   <nav className="w-full max-w-5xl mx-auto px-4 mt-12">
     <div className="flex justify-evenly items-center py-2">
       {projects.map((project, index) => {
@@ -54,16 +33,15 @@ const WorkMenu = ({ projects, hoveredIndex, setHoveredIndex }) => (
         return (
           <div
             key={project.slug}
-            onMouseEnter={() => setHoveredIndex(index)}
+            onClick={() => isMobile && setHoveredIndex(index)}
+            onMouseEnter={() => !isMobile && setHoveredIndex(index)}
             className={`cursor-pointer transition-all duration-300 text-center px-6 py-2 font-extrabold text-lg border-b-4 ${
               isActive
                 ? 'border-[#5EFF7C] text-[#5EFF7C]'
                 : 'border-transparent text-white hover:border-[#5EFF7C]'
             }`}
           >
-            <Link href={`/work/${project.slug}`}>
-              <span className="block">{project.title}</span>
-            </Link>
+            <span className="block">{project.title}</span>
           </div>
         );
       })}
@@ -71,7 +49,6 @@ const WorkMenu = ({ projects, hoveredIndex, setHoveredIndex }) => (
   </nav>
 );
 
-// Slideshow for Development & Graphic Design projects
 const HoverSlideshow = ({ images, projectUrl }) => {
   const [index, setIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -115,13 +92,12 @@ const HoverSlideshow = ({ images, projectUrl }) => {
   );
 };
 
-// Single static image for Video Editing project
 const SingleImage = ({ image, projectUrl }) => (
   <Link href={projectUrl} target="_blank" rel="noopener noreferrer" className="block">
     <div className="w-full aspect-square rounded-lg border-2 border-white hover:border-[#5EFF7C] hover:shadow-lg transition-all duration-300 overflow-hidden">
       <Image
         src={image}
-        alt="Video Editing Project Image"
+        alt="Project Image"
         width={300}
         height={300}
         className="object-cover w-full h-full"
@@ -137,7 +113,7 @@ const ImageGrid = ({ project }) => {
   if (project.slug === 'video-editing') {
     return (
       <div className="mx-auto mt-6 max-w-6xl grid grid-cols-3 gap-6 px-6">
-        {project.images.slice(0, 6).map((img, i) => (
+        {project.images.map((img, i) => (
           <SingleImage key={i} image={img} projectUrl={project.url} />
         ))}
       </div>
@@ -146,8 +122,7 @@ const ImageGrid = ({ project }) => {
 
   return (
     <div className="mx-auto mt-6 max-w-6xl grid grid-cols-3 gap-6 px-6">
-      {project.images.slice(0, 9).map((img, i) => {
-        // For slideshow: take 3 images cycling from current index
+      {project.images.map((img, i) => {
         const slideshowImages = [];
         for (let j = 0; j < 3; j++) {
           slideshowImages.push(project.images[(i + j) % project.images.length]);
@@ -166,6 +141,15 @@ const ImageGrid = ({ project }) => {
 
 const Work = () => {
   const [hoveredIndex, setHoveredIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth < 768);
+    checkScreen();
+    window.addEventListener('resize', checkScreen);
+    return () => window.removeEventListener('resize', checkScreen);
+  }, []);
+
   const selectedProject = projects[hoveredIndex];
 
   return (
@@ -179,16 +163,11 @@ const Work = () => {
           <h1 className="text-5xl md:text-6xl font-extrabold text-white mt-16 mb-6 animate-font-transition">
             My <span className="text-[#5EFF7C]">Work</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-6">
-           From Video Editing & Graphic Designing to UI/UX & Development,
-           I have worked in various fields.
-           Hover onto anyone of the options below to view my contributions in that particular domain.
-          </p>
-
           <WorkMenu
             projects={projects}
             hoveredIndex={hoveredIndex}
             setHoveredIndex={setHoveredIndex}
+            isMobile={isMobile}
           />
           <ImageGrid project={selectedProject} />
         </div>
