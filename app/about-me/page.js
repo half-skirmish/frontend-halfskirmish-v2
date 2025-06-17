@@ -33,7 +33,7 @@ export default function AboutMePage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {[
-                  { name: 'Graphic Design', icons: 3 },
+                  { name: 'Graphic Design', icons: 2 },
                   { name: 'UI/UX Design', icons: 2 },
                   { name: 'Video Editing', icons: 3 },
                   { name: 'HTML, CSS & JS', icons: 3 },
