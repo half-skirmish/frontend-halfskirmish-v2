@@ -18,7 +18,7 @@ const Homepage = () => {
         <div className="relative z-10 w-full px-8 md:px-16 flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto mt-5">
           {/* Left Text */}
           <div className="text-center md:text-left mb-10 md:mb-0 md:w-1/2">
-            <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 animate-font-transition">
+            <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 animate-font-transition">
               Hey, I’m <span className="text-[#5EFF7C]">Naman Chaturvedi,</span>
             </h1>
             <p className="text-5xl md:text-5xl text-white mb-8 h-12">
