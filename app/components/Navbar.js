@@ -28,7 +28,7 @@ const Navbar = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const navItems = ['Home', 'Work', 'About Me'];
+  const navItems = ['Home', 'Blog', 'Photos', 'About Me'];
 
   return (
     <nav className="absolute top-6 left-0 w-full z-50 px-8 flex items-center justify-between">
