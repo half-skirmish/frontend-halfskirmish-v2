@@ -4,7 +4,6 @@ import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isDark, setIsDark] = useState(true);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [title, setTitle] = useState('Naman Chaturvedi');
   const [visible, setVisible] = useState(true);
 
@@ -28,7 +27,7 @@ const Navbar = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const navItems = ['Home', 'Blog', 'Photos', 'About Me'];
+  const navItems = ['Home', 'Work', 'Blog', 'Photos', 'About Me'];
 
   return (
     <nav className="absolute top-6 left-0 w-full z-50 px-8 flex items-center justify-between">
@@ -62,35 +61,6 @@ const Navbar = () => {
           ))}
         </div>
       </div>
-
-      {/* Hamburger icon - visible on mobile */}
-      <div className="sm:hidden">
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="text-black dark:text-white focus:outline-none"
-        >
-          {mobileOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="sm:hidden absolute top-16 right-8 bg-white dark:bg-black shadow-xl rounded-xl p-6 w-56 transition-all duration-300">
-          <ul className="flex flex-col gap-4 text-black dark:text-white">
-            {navItems.map((item) => (
-              <li key={item}>
-                <a
-                  href={item === 'Home' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
-                  onClick={() => setMobileOpen(false)}
-                  className="block hover:text-[#006400] transition"
-                >
-                  {item}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </nav>
   );
 };
