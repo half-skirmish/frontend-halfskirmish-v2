@@ -1,5 +1,6 @@
 import { Ubuntu } from "next/font/google";
 import "./globals.css";
+import Footer from "./components/Footer";
 
 // Import Ubuntu font with CSS variable
 const ubuntu = Ubuntu({
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${ubuntu.variable} font-sans antialiased`}>
         {children}
+        <Footer />
       </body>
     </html>
   );
