@@ -21,7 +21,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${ubuntu.variable} font-sans antialiased`}>
         <Navbar /> 
+        <div className="cursor-crosshair">
         {children}
+        </div>
         <Footer />
       </body>
     </html>
