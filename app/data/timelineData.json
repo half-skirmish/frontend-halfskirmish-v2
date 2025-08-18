@@ -1,34 +1,42 @@
 [
   {
-    "year": "2021",
+    "type": "period",
+    "start": { "year": 2021, "month": "Jan" },
+    "end": { "year": 2021, "month": "Dec" },
     "title": "Project Alpha Launch",
     "description": "Successfully launched Project Alpha, a groundbreaking initiative in machine learning that exceeded all initial performance benchmarks.",
     "imageUrl": "https://placehold.co/150x150/1a202c/5eff7c?text=Alpha",
     "descriptionImageUrl": "https://placehold.co/400x300/1a202c/ffffff?text=Alpha+Details"
   },
   {
-    "year": "2019",
+    "type": "period",
+    "start": { "year": 2019, "month": "Mar" },
+    "end": { "year": 2020, "month": "Feb" },
     "title": "New Partnership",
     "description": "Formed a strategic partnership with a leading tech company, expanding our market reach and collaborative capabilities.",
     "imageUrl": "https://placehold.co/150x150/1a202c/5eff7c?text=Partner",
     "descriptionImageUrl": "https://placehold.co/400x300/1a202c/ffffff?text=Partnership+Details"
   },
   {
-    "year": "2017",
+    "type": "event",
+    "year": 2017,
     "title": "Series B Funding",
     "description": "Secured $20 million in Series B funding, enabling us to scale our operations and invest in new research and development.",
     "imageUrl": "https://placehold.co/150x150/1a202c/5eff7c?text=Funding",
     "descriptionImageUrl": "https://placehold.co/400x300/1a202c/ffffff?text=Funding+Details"
   },
   {
-    "year": "2015",
+    "type": "event",
+    "year": 2015,
     "title": "Company Founded",
     "description": "The journey began. Our company was founded with a mission to innovate and disrupt the technology sector.",
     "imageUrl": "https://placehold.co/150x150/1a202c/5eff7c?text=Founded",
     "descriptionImageUrl": "https://placehold.co/400x300/1a202c/ffffff?text=Founded+Details"
   },
   {
-    "year": "2012",
+    "type": "period",
+    "start": { "year": 2012, "month": "Jan" },
+    "end": { "year": 2014, "month": "Dec" },
     "title": "Initial Research Phase",
     "description": "The foundational ideas were born. This period was dedicated to intensive research and developing the core concepts that would later define our products.",
     "imageUrl": "https://placehold.co/150x150/1a202c/5eff7c?text=Research",
