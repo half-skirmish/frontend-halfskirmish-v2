@@ -19,6 +19,30 @@
   }
 }
 
+/* Defines the movement for the animation */
+@keyframes moveLeftRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Applies the animation to the first circle */
+.animate-circle-1 {
+  animation: moveLeftRight 7s ease-in-out infinite;
+}
+
+/* Applies the animation to the second circle with a different speed */
+.animate-circle-2 {
+  animation: moveLeftRight 9s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
