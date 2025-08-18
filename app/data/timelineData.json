@@ -5,7 +5,7 @@
     "end": { "year": 2024, "month": "Oct" },
     "title": "Integrated Master of Science in Computer Science",
     "description": "Successfully launched Project Alpha, a groundbreaking initiative in machine learning that exceeded all initial performance benchmarks.",
-    "imageUrl": "https://placehold.co/150x150/1a202c/5eff7c?text=Alpha",
+    "imageUrl": "/nulogo.png",
     "descriptionImageUrl": "https://placehold.co/400x300/1a202c/ffffff?text=Alpha+Details"
   },
   {
@@ -14,7 +14,7 @@
     "end": { "year": 2021, "month": "Aug" },
     "title": "Volunteer - Capture and Post Production",
     "description": "Successfully launched Project Alpha, a groundbreaking initiative in machine learning that exceeded all initial performance benchmarks.",
-    "imageUrl": "https://placehold.co/150x150/1a202c/5eff7c?text=Alpha",
+    "imageUrl": "/TEDx-logo-1536x1536.png",
     "descriptionImageUrl": "https://placehold.co/400x300/1a202c/ffffff?text=Alpha+Details"
   },
     {
@@ -23,7 +23,7 @@
     "end": { "year": 2022, "month": "Jul" },
     "title": "Core - Capture and Post Production",
     "description": "Successfully launched Project Alpha, a groundbreaking initiative in machine learning that exceeded all initial performance benchmarks.",
-    "imageUrl": "https://placehold.co/150x150/1a202c/5eff7c?text=Alpha",
+    "imageUrl": "/TEDx-logo-1536x1536.png",
     "descriptionImageUrl": "https://placehold.co/400x300/1a202c/ffffff?text=Alpha+Details"
   },
     {
@@ -32,7 +32,7 @@
     "end": { "year": 2024, "month": "Jun" },
     "title": "Cyber Security Intern",
     "description": "Successfully launched Project Alpha, a groundbreaking initiative in machine learning that exceeded all initial performance benchmarks.",
-    "imageUrl": "https://placehold.co/150x150/1a202c/5eff7c?text=Alpha",
+    "imageUrl": "/rapifuzz.png",
     "descriptionImageUrl": "https://placehold.co/400x300/1a202c/ffffff?text=Alpha+Details"
   }
 ]
