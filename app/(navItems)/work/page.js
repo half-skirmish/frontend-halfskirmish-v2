@@ -94,7 +94,7 @@ const Work = () => {
       <div className="container mx-auto w-full h-full">
         <div className="relative wrap overflow-hidden p-4 md:p-10 h-full">
           <h1 className="text-3xl sm:text-4xl font-bold text-center text-white mt-8 mb-12">
-            My Work Experience
+            Learnings and Work Experiences
           </h1>
           {/* The vertical line */}
           <div className="border-2-2 absolute border-opacity-20 border-gray-400 h-full border" style={{ left: '50%' }}></div>
