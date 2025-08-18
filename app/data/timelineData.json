@@ -34,5 +34,14 @@
     "description": "Successfully launched Project Alpha, a groundbreaking initiative in machine learning that exceeded all initial performance benchmarks.",
     "imageUrl": "/rapifuzz.png",
     "descriptionImageUrl": "https://placehold.co/400x300/1a202c/ffffff?text=Alpha+Details"
+  },
+    {
+    "type": "period",
+    "start": { "year": 2025, "month": "Feb" },
+    "end": { "year": 2025, "month": "May" },
+    "title": "UI & Creative Designer",
+    "description": "Successfully launched Project Alpha, a groundbreaking initiative in machine learning that exceeded all initial performance benchmarks.",
+    "imageUrl": "/zimyo.png",
+    "descriptionImageUrl": "https://placehold.co/400x300/1a202c/ffffff?text=Alpha+Details"
   }
 ]
