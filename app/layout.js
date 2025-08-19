@@ -1,13 +1,13 @@
-import { Ubuntu } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
-// Import Ubuntu font with CSS variable
-const ubuntu = Ubuntu({
-  variable: "--font-ubuntu",
+// Import Manrope font with correct weights
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["200","300","400","500","600","700","800"], // removed 100
   display: "swap",
 });
 
@@ -19,11 +19,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${ubuntu.variable} font-sans antialiased`}>
-        <Navbar /> 
-        <div className="cursor-crosshair">
-        {children}
-        </div>
+      <body className={`${manrope.variable} font-sans antialiased`}>
+        <Navbar />
+        <div className="cursor-crosshair">{children}</div>
         <Footer />
       </body>
     </html>
