@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "title": "Golden Hour Sunset",
+        "thumbnailUrl": "https://placehold.co/400x400/f0a500/ffffff?text=Sunset",
+        "imageUrl": "https://placehold.co/1200x800/f0a500/ffffff?text=Sunset",
+        "description": "A stunning sunset over the ocean, captured during the golden hour. The sky is painted with vibrant shades of orange, pink, and gold.",
+        "category": "Nature",
+        "author": "Jane Doe",
+        "timestamp": 1698345000000
+    },
+    {
+        "id": 2,
+        "title": "Misty Mountain Peaks",
+        "thumbnailUrl": "https://placehold.co/400x400/3d5a80/ffffff?text=Mountains",
+        "imageUrl": "https://placehold.co/1200x800/3d5a80/ffffff?text=Mountains",
+        "description": "The majestic peaks of the mountains shrouded in a soft, ethereal mist at dawn. A truly serene and peaceful landscape.",
+        "category": "Landscape",
+        "author": "John Smith",
+        "timestamp": 1692079200000
+    },
+    {
+        "id": 3,
+        "title": "Enchanted Forest Path",
+        "thumbnailUrl": "https://placehold.co/400x400/285c2d/ffffff?text=Forest",
+        "imageUrl": "https://placehold.co/1200x800/285c2d/ffffff?text=Forest",
+        "description": "A winding path through a lush, green forest with sunbeams filtering through the dense canopy above.",
+        "category": "Nature",
+        "author": "Jane Doe",
+        "timestamp": 1704884400000
+    },
+    {
+        "id": 4,
+        "title": "Urban Cityscape at Night",
+        "thumbnailUrl": "https://placehold.co/400x400/2a2a2a/ffffff?text=City",
+        "imageUrl": "https://placehold.co/1200x800/2a2a2a/ffffff?text=City",
+        "description": "The vibrant and bustling city lights creating a dazzling display against the dark night sky. A testament to modern life.",
+        "category": "Urban",
+        "author": "Alex Johnson",
+        "timestamp": 1669932000000
+    }
+]
