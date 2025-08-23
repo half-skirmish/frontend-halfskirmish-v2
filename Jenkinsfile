@@ -2,9 +2,11 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "namans_portfolio_image"
+        IMAGE_NAME = "halfskirmish_portfolio"
         TAG = "latest"
-        REGISTRY = "192.168.1.2:30003"
+        REGISTRY = "127.0.0.1:5000"
+        DEPLOYMENT_NAME = "halfkirmish-portfolio"
+        NAMESPACE = "apps"
     }
 
     stages {
@@ -37,11 +39,24 @@ pipeline {
             }
         }
 
-        stage('Remove Local Image (Optional)') {
+        stage('Rolling Restart Deployment') {
             steps {
                 script {
-                    echo 'Removing local image to save space (optional)...'
-                    sh "docker rmi ${REGISTRY}/${IMAGE_NAME}:${TAG} || true"
+                    echo "Restarting deployment ${DEPLOYMENT_NAME} in namespace ${NAMESPACE}..."
+                    sh "kubectl rollout restart deployment/${DEPLOYMENT_NAME} -n ${NAMESPACE}"
+                    sh "kubectl rollout status deployment/${DEPLOYMENT_NAME} -n ${NAMESPACE}"
+                }
+            }
+        }
+
+        stage('Cleanup') {
+            steps {
+                script {
+                    echo 'Cleaning up unused Docker resources...'
+                    // Remove dangling images (not tagged & not used by any container)
+                    sh "docker image prune -f"
+                    // Remove stopped containers (optional)
+                    sh "docker container prune -f"
                 }
             }
         }
