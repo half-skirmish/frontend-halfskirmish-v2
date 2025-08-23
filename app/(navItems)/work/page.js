@@ -58,20 +58,12 @@ const TimelineItem = ({ data, index, totalItems }) => {
           </div>
         </div>
 
-        {/* Description on hover */}
+        {/* Description on hover (no image now) */}
         <div
           className={`absolute ${
             shouldPinToBottom ? "bottom-8" : "top-0"
           } left-full ml-6 w-80 p-4 bg-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-20`}
         >
-          <div className="relative w-full h-48 mb-3">
-            <Image
-              src={data.descriptionImageUrl}
-              alt={`${data.title} description`}
-              fill
-              className="object-cover rounded-md"
-            />
-          </div>
           <p className="text-sm text-gray-300">{data.description}</p>
         </div>
       </div>
@@ -97,11 +89,12 @@ const Work = () => {
     <div className="bg-gray-900 text-white font-sans min-h-screen p-4 sm:p-6 lg:p-8">
       <div className="container mx-auto w-full h-full">
         <div className="p-4 md:p-10">
-          <h1 className="text-3xl sm:text-4xl font-bold text-center text-white mt-8 mb-16">
+          <h1 className="text-3xl sm:text-4xl font-bold text-center text-white mt-16 sm:mt-8 mb-16">
             Learnings and Work Experiences
           </h1>
 
-          <div className="relative max-w-lg">
+          {/* Timeline Centered on desktop, full width on mobile */}
+          <div className="relative w-full max-w-full md:max-w-lg mx-auto">
             {sortedTimeline.map((data, idx) => (
               <TimelineItem
                 data={data}
