@@ -2,6 +2,7 @@
 
 import photoData from "../../data/photoData.json";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const Gallery = ({ photos, categories, activeCategory, onFilterChange, sortOrder, onSortChange }) => {
     return (
@@ -55,12 +56,15 @@ const Gallery = ({ photos, categories, activeCategory, onFilterChange, sortOrder
                         href={`?id=${photo.id}`} 
                         className="group block bg-gray-800 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-green-500/20 border border-transparent hover:border-[#5EFF7C]"
                     >
-                        <img 
-                            src={photo.thumbnailUrl} 
-                            alt={photo.title} 
-                            className="w-full h-48 object-cover"
-                            onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/400x400/cccccc/ffffff?text=Error'; }}
-                        />
+                        <div className="relative w-full h-48">
+                            <Image 
+                                src={photo.thumbnailUrl} 
+                                alt={photo.title} 
+                                fill
+                                className="object-cover"
+                                onError={(e) => { e.target.src='https://placehold.co/400x400/cccccc/ffffff?text=Error'; }}
+                            />
+                        </div>
                         <div className="p-4">
                             <h3 className="text-lg font-semibold text-white group-hover:text-[#5EFF7C] transition-colors duration-300">{photo.title}</h3>
                             <p className="text-sm text-gray-400">by {photo.author}</p>
@@ -73,13 +77,14 @@ const Gallery = ({ photos, categories, activeCategory, onFilterChange, sortOrder
 };
 
 // --- Photo Detail Component ---
-// Themed to match the dark style.
 const PhotoDetail = ({ photo }) => {
     if (!photo) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen text-center p-8">
                 <h1 className="text-4xl font-bold text-red-500 mb-4">Photo Not Found</h1>
-                <p className="text-lg text-gray-300 mb-8">Sorry, we couldn't find the photo you're looking for.</p>
+                <p className="text-lg text-gray-300 mb-8">
+                Sorry, we couldn&apos;t find the photo you&apos;re looking for.
+                </p>
                 <a href="/photos" className="px-6 py-2 bg-[#5EFF7C] text-black font-bold rounded-lg shadow-md hover:bg-green-400 transition-colors">
                     ← Back to Gallery
                 </a>
@@ -93,12 +98,15 @@ const PhotoDetail = ({ photo }) => {
                 ← Back to Gallery
             </a>
             <div className="bg-gray-800 rounded-lg shadow-2xl shadow-green-500/20 overflow-hidden">
-                <img 
-                    src={photo.imageUrl} 
-                    alt={photo.title} 
-                    className="w-full h-auto object-cover"
-                    onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1200x800/cccccc/ffffff?text=Image+Not+Found'; }}
-                />
+                <div className="relative w-full h-[500px]">
+                    <Image 
+                        src={photo.imageUrl} 
+                        alt={photo.title} 
+                        fill
+                        className="object-cover"
+                        onError={(e) => { e.target.src='https://placehold.co/1200x800/cccccc/ffffff?text=Image+Not+Found'; }}
+                    />
+                </div>
                 <div className="p-6 md:p-8">
                     <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">{photo.title}</h1>
                     <p className="text-gray-300 text-base leading-relaxed">{photo.description}</p>
@@ -108,16 +116,13 @@ const PhotoDetail = ({ photo }) => {
     );
 };
 
-
 // --- Main Photos Component ---
-// This component now manages both filter and sort state.
 function Photos() {
     const [allPhotos, setAllPhotos] = useState([]);
     const [currentPhotoId, setCurrentPhotoId] = useState(null);
     const [activeCategory, setActiveCategory] = useState('All');
-    const [sortOrder, setSortOrder] = useState('newest'); // Default sort order
+    const [sortOrder, setSortOrder] = useState('newest'); 
 
-    // Load data into state on component mount, simulating a fetch call.
     useEffect(() => {
         setAllPhotos(photoData);
         
@@ -126,17 +131,15 @@ function Photos() {
         if (id) {
             setCurrentPhotoId(parseInt(id, 10));
         }
-    }, []); // Empty dependency array ensures this runs only once.
+    }, []);
 
     const selectedPhoto = allPhotos.find(p => p.id === currentPhotoId);
     const categories = ['All', ...new Set(allPhotos.map(p => p.category))];
 
-    // 1. Filter photos based on the active category.
     const filteredPhotos = activeCategory === 'All'
         ? allPhotos
         : allPhotos.filter(photo => photo.category === activeCategory);
 
-    // 2. Sort the *filtered* photos based on the current sort order.
     const sortedAndFilteredPhotos = [...filteredPhotos].sort((a, b) => {
         switch (sortOrder) {
             case 'oldest':
