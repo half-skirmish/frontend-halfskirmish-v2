@@ -3,7 +3,6 @@ const nextConfig = {
   experimental: {
     turbo: false,
   },
-  output: "standalone",
 
   images: {
     remotePatterns: [
