@@ -31,7 +31,14 @@ const ProjectCard = ({ title, description, imageUrl, techStack, liveUrl, repoUrl
 
     return (
         <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700 hover:border-[#5EFF7C] transition-all duration-300 hover:shadow-green-500/20">
-            <img src={imageUrl} alt={title} className="w-full h-48 object-cover" onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/600x400/cccccc/ffffff?text=Project+Image'; }} />
+                    <Image
+                    src={imageUrl || fallback}
+                    alt={title}
+                    fill
+                    className="object-cover"
+                    onError={(e) => {
+                    }}
+                />
             <div className="p-6">
                 <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
                 <p className="text-gray-400 mb-4">{description}</p>
