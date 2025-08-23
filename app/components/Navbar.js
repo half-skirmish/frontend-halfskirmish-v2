@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
 
 const Navbar = () => {
   const [isDark, setIsDark] = useState(true);
@@ -68,12 +69,13 @@ const Navbar = () => {
           >
             {navItems.map((item, index) => (
               <div key={item} className="flex items-center">
-                <a
+                {/* Reverted to <a> tags to resolve compilation error */}
+                <Link
                   href={item === 'Home' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="px-3 transition hover:text-green-800" // Using a standard Tailwind color for simplicity
+                  className="px-3 transition hover:text-green-800"
                 >
                   {item}
-                </a>
+                </Link>
                 {/* Divider */}
                 {index < navItems.length - 1 && (
                   <span className="mx-1 h-5 w-px bg-gray-300" />
@@ -83,7 +85,7 @@ const Navbar = () => {
           </div>
         </div>
 
- {/* --- Hamburger Menu Icon (Mobile) --- */}
+        {/* --- Hamburger Menu Icon (Mobile) --- */}
         <div className="sm:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -101,29 +103,28 @@ const Navbar = () => {
           ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-6">
-          {/* Hardcoded Links Start Here */}
-          <a
+          {/* Reverted to <a> tags to resolve compilation error */}
+          <Link
             href="/"
             className="text-white text-3xl font-semibold transition hover:text-green-400"
             onClick={() => setIsMenuOpen(false)}
           >
             Home
-          </a>
-          <a
+          </Link>
+          <Link
             href="/work"
             className="text-white text-3xl font-semibold transition hover:text-green-400"
             onClick={() => setIsMenuOpen(false)}
           >
             Work
-          </a>
-          <a
+          </Link>
+          <Link
             href="/about-me"
             className="text-white text-3xl font-semibold transition hover:text-green-400"
             onClick={() => setIsMenuOpen(false)}
           >
             About Me
-          </a>
-          {/* Hardcoded Links End Here */}
+          </Link>
         </div>
       </div>
     </>
