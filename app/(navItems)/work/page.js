@@ -1,17 +1,17 @@
+"use client";
 import React from "react";
+import Image from "next/image";
 import timelineData from "../../data/timelineData.json";
 
 const monthOrder = {
   Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6,
-  Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12
+  Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12,
 };
 
 // Format date range or single year
 const formatDate = (item) => {
   if (item.type === "period") {
-    const endText = item.end
-      ? `${item.end.month} ${item.end.year}`
-      : "Present";
+    const endText = item.end ? `${item.end.month} ${item.end.year}` : "Present";
     return `${item.start.month} ${item.start.year} – ${endText}`;
   }
   if (item.type === "event") {
@@ -48,9 +48,11 @@ const TimelineItem = ({ data, index, totalItems }) => {
             <h3 className="text-lg font-bold text-white flex-grow pr-4">
               {data.title}
             </h3>
-            <img
+            <Image
               src={data.imageUrl}
               alt={data.title}
+              width={64}
+              height={64}
               className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
             />
           </div>
@@ -62,11 +64,14 @@ const TimelineItem = ({ data, index, totalItems }) => {
             shouldPinToBottom ? "bottom-8" : "top-0"
           } left-full ml-6 w-80 p-4 bg-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-20`}
         >
-          <img
-            src={data.descriptionImageUrl}
-            alt={`${data.title} description`}
-            className="w-full h-auto rounded-md mb-3"
-          />
+          <div className="relative w-full h-48 mb-3">
+            <Image
+              src={data.descriptionImageUrl}
+              alt={`${data.title} description`}
+              fill
+              className="object-cover rounded-md"
+            />
+          </div>
           <p className="text-sm text-gray-300">{data.description}</p>
         </div>
       </div>
@@ -82,10 +87,8 @@ const Work = () => {
 
     if (aYear !== bYear) return bYear - aYear;
 
-    const aMonth =
-      a.type === "period" ? monthOrder[a.start.month] : 1;
-    const bMonth =
-      b.type === "period" ? monthOrder[b.start.month] : 1;
+    const aMonth = a.type === "period" ? monthOrder[a.start.month] : 1;
+    const bMonth = b.type === "period" ? monthOrder[b.start.month] : 1;
 
     return bMonth - aMonth;
   });
