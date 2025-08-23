@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    turbo: false, // Disable Turbopack to fix font error
+    turbo: false, 
   },
+  output: "standalone"
 };
 
 export default nextConfig;
