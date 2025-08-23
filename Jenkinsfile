@@ -5,7 +5,7 @@ pipeline {
         IMAGE_NAME = "halfskirmish_portfolio"
         TAG = "latest"
         REGISTRY = "127.0.0.1:5000"
-        DEPLOYMENT_NAME = "halfkirmish-portfolio"
+        DEPLOYMENT_NAME = "halfskirmish-portfolio"
         NAMESPACE = "apps"
     }
 
