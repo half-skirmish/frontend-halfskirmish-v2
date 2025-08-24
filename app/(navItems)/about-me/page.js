@@ -49,13 +49,7 @@ const ProjectCard = ({ title, description, imageUrl, techStack, liveUrl, repoUrl
 
   return (
     <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700 hover:border-[#5EFF7C] transition-all duration-300 hover:shadow-green-500/20">
-      <div className="relative w-full h-56">
-        <Image
-          src={imageUrl || fallback}
-          alt={title}
-          fill
-          className="object-cover"
-        />
+      <div className="relative w-full">
       </div>
       <div className="p-6">
         <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
@@ -77,33 +71,44 @@ const ProjectCard = ({ title, description, imageUrl, techStack, liveUrl, repoUrl
 // --- Data (Moved outside component for performance) ---
 
 const skills = [
-    { name: "React", icon: <CodeIcon /> },
     { name: "Next.js", icon: <CodeIcon /> },
-    { name: "JavaScript", icon: <CodeIcon /> },
-    { name: "TypeScript", icon: <CodeIcon /> },
+    { name: "React", icon: <CodeIcon /> },
+    { name: "Express JS", icon: <CodeIcon /> },
+    { name: "MongoDB", icon: <CodeIcon /> },
+    { name: "PostgreSQL", icon: <CodeIcon /> },
     { name: "Tailwind CSS", icon: <CodeIcon /> },
-    { name: "Node.js", icon: <CodeIcon /> },
     { name: "HTML5 & CSS3", icon: <CodeIcon /> },
     { name: "Git & GitHub", icon: <CodeIcon /> },
 ];
 
 const projects = [
   {
-    title: "Photo Gallery App",
-    description: "A dynamic, filterable, and sortable photo gallery built with React. Features a dark theme and responsive design.",
-    imageUrl: "https://placehold.co/600x400/2a2a2a/5eff7c?text=Gallery+Project",
-    techStack: ["React", "Tailwind CSS", "JavaScript"],
-    liveUrl: "#",
-    repoUrl: "#",
+    title: "Kahichan Japanese App",
+    description: "A Japanese learning app with flashcards, quizzes, and spaced repetition to help users master the language effectively.",
+    techStack: ["NextJS", "MongoDB", "Tailwind CSS", "PostGreSQL"],
+    liveUrl: "https://kahichandev.halfskirmish.com/",
+    repoUrl: "https://github.com/kahitoz-infra/kahitoz-japanese-app",
   },
   {
-    title: "Interactive Timeline",
-    description: "A professional timeline component to showcase work experience and learning milestones with hover effects.",
-    imageUrl: "https://placehold.co/600x400/2a2a2a/5eff7c?text=Timeline+Project",
-    techStack: ["Next.js", "CSS Modules", "JSON"],
-    liveUrl: "#",
-    repoUrl: "#",
+    title: "Geolocation Weather App",
+    description: "A weather app that fetches real-time weather data based on user's geolocation using Free WeatherAPI.",
+    techStack: ["Next.js", "Tailwind CSS", "WeatherAPI"],
+    liveUrl: "https://weather.halfskirmish.com",
+    repoUrl: "https://github.com/naman-1905/Weather-App",
   },
+      {
+    title: "Astra Bot",
+    description: "A Chatbot built using Gemma 1 Billion parameters model.",
+    techStack: ["Next.js", "Tailwind CSS", "Google Gemma API"],
+    repoUrl: "https://github.com/naman-1905/AI-Chatbot",
+  },
+    {
+    title: "Half Skirmish Portfolio",
+    description: "A portfolio website showcasing my projects, skills, and experience.",
+    techStack: ["Next.js", "Tailwind CSS", "WeatherAPI"],
+    liveUrl: "halfskirmish.com",
+    repoUrl: "https://github.com/half-skirmish/frontend-halfskirmish-v2",
+  }
 ];
 
 // --- Main Page Component ---
