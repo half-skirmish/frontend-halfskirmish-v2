@@ -39,7 +39,7 @@ const Homepage = () => {
                 <FaLinkedin />
               </a>
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/naman-1905"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-[#5EFF7C] transition duration-300 text-2xl"
@@ -48,14 +48,13 @@ const Homepage = () => {
               </a>
             </div>
 
-            <a
-              href="/path-to-your-resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white text-black font-semibold px-6 py-2 rounded-lg hover:bg-[#4cd868] transition duration-300 text-lg"
-            >
-              Download Resume
-            </a>
+           <a
+            href="/resume.pdf"
+            download="Naman_Chaturvedi_Resume.pdf"
+            className="bg-white text-black font-semibold px-6 py-2 rounded-lg hover:bg-[#4cd868] transition duration-300 text-lg"
+          >
+            Download Resume
+          </a>
           </div>
 
           </div>
