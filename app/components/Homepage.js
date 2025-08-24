@@ -60,11 +60,11 @@ const Homepage = () => {
           </div>
 
           <div className="md:w-1/2 flex justify-center relative mt-4 mb-12 md:mb-0">
-            <div className="animate-circle-1 absolute -top-6 -left-1 w-36 h-36 rounded-full bg-[#5EFF7C] opacity-100 z-0" />
-            <div className="animate-circle-2 absolute -bottom-10 -right-0.5 w-36 h-36 rounded-full bg-[#5EFF7C] opacity-100 z-0" />
+            <div className="animate-circle-1 absolute -top-6 -left-1 w-36 h-36 rounded-full bg-[#5EFF7C] opacity-100 z-20" />
+            <div className="animate-circle-2 absolute -bottom-10 -right-0.5 w-36 h-36 rounded-full bg-[#5EFF7C] opacity-100 z-20" />
             <div className="w-[19rem] h-[32rem] rounded-full overflow-hidden border-4 border-[#5EFF7C] shadow-lg relative z-10">
               <Image
-                src="/path/to/your/profile-picture.jpg"
+                src="/naman_dp.jpg"
                 alt="Naman Chaturvedi Profile Picture"
                 fill
                 className="object-cover"
