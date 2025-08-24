@@ -49,7 +49,7 @@ const Homepage = () => {
             </div>
 
            <a
-            href="/resume.pdf"
+            href="/Naman_Chaturvedi_Resume.pdf"
             download="Naman_Chaturvedi_Resume.pdf"
             className="bg-white text-black font-semibold px-6 py-2 rounded-lg hover:bg-[#4cd868] transition duration-300 text-lg"
           >
