@@ -59,7 +59,7 @@ const Homepage = () => {
 
           <div className="md:w-1/2 flex justify-center relative">
             <div className="animate-circle-1 absolute -top-6 -left-1 w-36 h-36 rounded-full bg-[#5EFF7C] opacity-100 z-0" />
-            <div className="animate-circle-2 absolute -bottom-10 -right-10 w-52 h-52 rounded-full bg-[#5EFF7C] opacity-100 z-0" />
+            <div className="animate-circle-2 absolute -bottom-10 -right-0.5 w-36 h-36 rounded-full bg-[#5EFF7C] opacity-100 z-0" />
             <div className="w-[19rem] h-[32rem] rounded-full overflow-hidden border-4 border-[#5EFF7C] shadow-lg relative z-10">
               <Image
                 src="/path/to/your/profile-picture.jpg"
