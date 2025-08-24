@@ -56,7 +56,9 @@ const Navbar = () => {
             visible ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          {title}
+          <Link href="/" className="hover:text-green-400 transition-colors">
+            {title}
+          </Link>
         </div>
 
         {/* --- Desktop Menu (Centered) --- */}
