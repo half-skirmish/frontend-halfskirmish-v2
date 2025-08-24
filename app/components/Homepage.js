@@ -17,7 +17,7 @@ const Homepage = () => {
             <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 animate-font-transition">
               Hey, I’m <span className="text-[#5EFF7C]">Naman Chaturvedi,</span>
             </h1>
-            <p className="text-2xl md:text-5xl text-white mb-8 h-12">
+            <p className="text-4xl md:text-5xl text-white mb-8 h-12">
               <Typewriter
                 words={['A Developer', 'A UI/UX Designer', 'A Graphic Designer', 'A Video Editor', 'An Avid Gamer']}
                 loop={0}
@@ -28,8 +28,8 @@ const Homepage = () => {
                 delaySpeed={1000}
               />
             </p>
-
-            <div className="flex justify-center md:justify-start gap-6 mt-6">
+            <div className="flex flex-col md:flex-row md:items-center gap-6 mt-6">
+            <div className="flex justify-center md:justify-start gap-6">
               <a
                 href="https://www.linkedin.com/in/naman1905"
                 target="_blank"
@@ -46,18 +46,21 @@ const Homepage = () => {
               >
                 <FaGithub />
               </a>
-               <a
-                href="https://www.behance.net/naman1905"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-[#5EFF7C] transition duration-300 text-2xl"
-              >
-                <FaBehance />
-              </a>
             </div>
+
+            <a
+              href="/path-to-your-resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-black font-semibold px-6 py-2 rounded-lg hover:bg-[#4cd868] transition duration-300 text-lg"
+            >
+              Download Resume
+            </a>
           </div>
 
-          <div className="md:w-1/2 flex justify-center relative">
+          </div>
+
+          <div className="md:w-1/2 flex justify-center relative mt-4 mb-12 md:mb-0">
             <div className="animate-circle-1 absolute -top-6 -left-1 w-36 h-36 rounded-full bg-[#5EFF7C] opacity-100 z-0" />
             <div className="animate-circle-2 absolute -bottom-10 -right-0.5 w-36 h-36 rounded-full bg-[#5EFF7C] opacity-100 z-0" />
             <div className="w-[19rem] h-[32rem] rounded-full overflow-hidden border-4 border-[#5EFF7C] shadow-lg relative z-10">
