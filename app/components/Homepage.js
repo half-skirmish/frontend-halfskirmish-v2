@@ -19,7 +19,7 @@ const Homepage = () => {
             </h1>
             <p className="text-4xl md:text-5xl text-white mb-8 h-12">
               <Typewriter
-                words={['A Developer', 'A UI/UX Designer', 'A Graphic Designer', 'A Video Editor', 'An Avid Gamer']}
+                words={['A Developer', 'A UI/UX Designer', 'A Graphic Designer', 'A Video Editor']}
                 loop={0}
                 cursor
                 cursorStyle="_"
