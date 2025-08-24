@@ -86,8 +86,8 @@ const Work = () => {
   });
 
   return (
-    <div className="bg-gray-900 text-white font-sans min-h-screen p-4 sm:p-6 lg:p-8">
-      <div className="container mx-auto w-full h-full">
+    <div className="bg-gray-900 text-white font-sans min-h-screen p-4 sm:p-6 lg:p-8 overflow-x-hidden">
+      <div className="relative container mx-auto w-full h-full max-w-[100vw]">
         <div className="p-4 md:p-10">
           <h1 className="text-3xl sm:text-4xl font-bold text-center text-white mt-16 sm:mt-8 mb-16">
             Learnings and Work Experiences
