@@ -116,7 +116,7 @@ const projects = [
     {
     title: "Half Skirmish Portfolio",
     description: "A portfolio website showcasing my projects, skills, and experience.",
-    techStack: ["Next.js", "Tailwind CSS", "WeatherAPI"],
+    techStack: ["Next.js", "Tailwind CSS", "Responsive Design"],
     liveUrl: "https://halfskirmish.com",
     repoUrl: "https://github.com/half-skirmish/frontend-halfskirmish-v2",
   }
