@@ -10,12 +10,10 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    // This effect can be used to toggle a dark theme on the root HTML element
     document.documentElement.classList.toggle('dark', isDark);
   }, [isDark]);
 
   useEffect(() => {
-    // This effect cycles through the titles with a fade animation
     const titles = ['Naman Chaturvedi', 'Half Skirmish'];
     let index = 0;
 
@@ -25,26 +23,29 @@ const Navbar = () => {
         index = (index + 1) % titles.length;
         setTitle(titles[index]);
         setVisible(true);
-      }, 500); // Duration of the fade-out
-    }, 3500); // Time each title is visible
+      }, 500);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, []);
 
-  // Effect to prevent scrolling when the mobile menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
-    // Cleanup function to restore scrolling if the component unmounts while menu is open
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, [isMenuOpen]);
 
-  const navItems = ['Home', 'Work', 'About Me'];
+  const navItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Work', href: '/work' },
+    { label: 'About Me', href: '/about-me' },
+    { label: 'AI Chat', href: 'https://chat.halfskirmish.com', external: true },
+  ];
 
   return (
     <>
@@ -69,15 +70,15 @@ const Navbar = () => {
             }`}
           >
             {navItems.map((item, index) => (
-              <div key={item} className="flex items-center">
-                {/* Reverted to <a> tags to resolve compilation error */}
+              <div key={item.label} className="flex items-center">
                 <Link
-                  href={item === 'Home' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                  href={item.href}
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noopener noreferrer' : undefined}
                   className="px-3 transition hover:text-green-800"
                 >
-                  {item}
+                  {item.label}
                 </Link>
-                {/* Divider */}
                 {index < navItems.length - 1 && (
                   <span className="mx-1 h-5 w-px bg-gray-300" />
                 )}
@@ -104,28 +105,18 @@ const Navbar = () => {
           ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-6">
-          {/* Reverted to <a> tags to resolve compilation error */}
-          <Link
-            href="/"
-            className="text-white text-3xl font-semibold transition hover:text-green-400"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Home
-          </Link>
-          <Link
-            href="/work"
-            className="text-white text-3xl font-semibold transition hover:text-green-400"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Work
-          </Link>
-          <Link
-            href="/about-me"
-            className="text-white text-3xl font-semibold transition hover:text-green-400"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            About Me
-          </Link>
+          {navItems.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener noreferrer' : undefined}
+              className="text-white text-3xl font-semibold transition hover:text-green-400"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
       </div>
     </>
@@ -133,4 +124,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
