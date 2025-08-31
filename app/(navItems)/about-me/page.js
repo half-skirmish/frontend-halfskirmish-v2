@@ -112,6 +112,7 @@ const projects = [
     description: "A Chatbot built using Gemma 1 Billion parameters model.",
     techStack: ["Next.js", "Tailwind CSS", "Google Gemma API"],
     repoUrl: "https://github.com/naman-1905/AI-Chatbot",
+    liveUrl: "https://chat.halfskirmish.com",
   },
     {
     title: "Half Skirmish Portfolio",
