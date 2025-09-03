@@ -108,18 +108,18 @@ const projects = [
     liveUrl: "https://chat.halfskirmish.com",
   },
     {
-    title: "Notes App",
-    description: "A Note taking App built using Next.js, Tailwind CSS, MongoDB and Express.js.",
-    techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Express.js"],
-    liveUrl: "https://notes.halfskirmish.com",
-    repoUrl: "https://github.com/naman-1905/Notes-App",
-  },
-    {
     title: "Half Skirmish Portfolio",
     description: "A portfolio website showcasing my projects, skills, and experience.",
     techStack: ["Next.js", "Tailwind CSS", "Responsive Design"],
     liveUrl: "/",
     repoUrl: "https://github.com/half-skirmish/frontend-halfskirmish-v2",
+  },
+  {
+    title: "Notes App",
+    description: "A Note taking App built using Next.js, Tailwind CSS, MongoDB and Express.js.",
+    techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Express.js"],
+    liveUrl: "https://notes.halfskirmish.com",
+    repoUrl: "https://github.com/naman-1905/Notes-App",
   },
   {
     title: "Kahichan Japanese App",
