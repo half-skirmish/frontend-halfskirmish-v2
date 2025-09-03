@@ -17,9 +17,9 @@ const Homepage = () => {
             <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 animate-font-transition">
               Hey, I’m <span className="text-[#5EFF7C]">Naman Chaturvedi,</span>
             </h1>
-            <p className="text-4xl md:text-5xl text-white mb-8 h-12">
+            <p className="text-3xl sm:3xl md:text-3xl text-white mb-4 h-12">
               <Typewriter
-                words={['A Developer', 'A UI/UX Designer', 'A Graphic Designer', 'A Video Editor']}
+                words={['A Full-Stack Developer', 'A UI/UX Designer', 'A Graphic Designer', 'A Video Editor']}
                 loop={0}
                 cursor
                 cursorStyle="_"
