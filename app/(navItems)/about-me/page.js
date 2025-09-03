@@ -94,13 +94,6 @@ const skills = [
 
 const projects = [
   {
-    title: "Kahichan Japanese App",
-    description: "A Japanese learning app with flashcards, quizzes, and spaced repetition to help users master the language effectively.",
-    techStack: ["NextJS", "MongoDB", "Tailwind CSS", "PostGreSQL", "FastAPI"],
-    liveUrl: "https://kahichandev.halfskirmish.com/",
-    repoUrl: "https://github.com/kahitoz-infra/kahitoz-japanese-app",
-  },
-  {
     title: "Geolocation Weather App",
     description: "A weather app that fetches real-time weather data based on user's geolocation using Free WeatherAPI.",
     techStack: ["Next.js", "Tailwind CSS", "WeatherAPI"],
@@ -127,6 +120,13 @@ const projects = [
     techStack: ["Next.js", "Tailwind CSS", "Responsive Design"],
     liveUrl: "/",
     repoUrl: "https://github.com/half-skirmish/frontend-halfskirmish-v2",
+  },
+  {
+    title: "Kahichan Japanese App",
+    description: "A Japanese learning app with flashcards, quizzes, and spaced repetition to help users master the language effectively.",
+    techStack: ["NextJS", "MongoDB", "Tailwind CSS", "PostGreSQL", "FastAPI"],
+    liveUrl: "https://kahichandev.halfskirmish.com/",
+    repoUrl: "https://github.com/kahitoz-infra/kahitoz-japanese-app",
   }
 ];
 
