@@ -96,7 +96,7 @@ const projects = [
   {
     title: "Kahichan Japanese App",
     description: "A Japanese learning app with flashcards, quizzes, and spaced repetition to help users master the language effectively.",
-    techStack: ["NextJS", "MongoDB", "Tailwind CSS", "PostGreSQL"],
+    techStack: ["NextJS", "MongoDB", "Tailwind CSS", "PostGreSQL", "FastAPI"],
     liveUrl: "https://kahichandev.halfskirmish.com/",
     repoUrl: "https://github.com/kahitoz-infra/kahitoz-japanese-app",
   },
@@ -117,7 +117,7 @@ const projects = [
     {
     title: "Notes App",
     description: "A Note taking App built using Next.js, Tailwind CSS, MongoDB and Express.js.",
-    techStack: ["Next.js", "Tailwind CSS", "Responsive Design"],
+    techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Express.js"],
     liveUrl: "https://notes.halfskirmish.com",
     repoUrl: "https://github.com/naman-1905/Notes-App",
   },
