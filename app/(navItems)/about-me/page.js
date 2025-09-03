@@ -96,28 +96,28 @@ const projects = [
   {
     title: "Geolocation Weather App",
     description: "A weather app that fetches real-time weather data based on user's geolocation using Free WeatherAPI.",
-    techStack: ["Next.js", "Tailwind CSS", "WeatherAPI"],
+    techStack: ["Next.js", "Tailwind CSS", "WeatherAPI", "React Charts"],
     liveUrl: "https://weather.halfskirmish.com",
     repoUrl: "https://github.com/naman-1905/Weather-App",
   },
       {
     title: "Astra Bot",
     description: "A Chatbot built using Gemma 1 Billion parameters model.",
-    techStack: ["Next.js", "Tailwind CSS", "Google Gemma API"],
+    techStack: ["Next.js", "Tailwind CSS", "Google Gemma API", "Vercel's New Streamdown Feature"],
     repoUrl: "https://github.com/naman-1905/AI-Chatbot",
     liveUrl: "https://chat.halfskirmish.com",
   },
     {
     title: "Half Skirmish Portfolio",
     description: "A portfolio website showcasing my projects, skills, and experience.",
-    techStack: ["Next.js", "Tailwind CSS", "Responsive Design"],
+    techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Dynamic Routing"],
     liveUrl: "/",
     repoUrl: "https://github.com/half-skirmish/frontend-halfskirmish-v2",
   },
   {
     title: "Notes App",
     description: "A Note taking App built using Next.js, Tailwind CSS, MongoDB and Express.js.",
-    techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Express.js"],
+    techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Express.js", "React Modules"],
     liveUrl: "https://notes.halfskirmish.com",
     repoUrl: "https://github.com/naman-1905/Notes-App",
   },
@@ -127,7 +127,14 @@ const projects = [
     techStack: ["NextJS", "MongoDB", "Tailwind CSS", "PostGreSQL", "FastAPI"],
     liveUrl: "https://kahichandev.halfskirmish.com/",
     repoUrl: "https://github.com/kahitoz-infra/kahitoz-japanese-app",
+  },
+   {
+    title: "Blog Admin Panel",
+    description: "A Blog Admin Panel built using Next.js, Tailwind CSS, MongoDB and Express.js.",
+    techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Dynamic Routing"],
+    repoUrl: "https://github.com/half-skirmish/backend-halfskirmish",
   }
+
 ];
 
 // --- Main Page Component ---
