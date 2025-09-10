@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, User, Tag, Clock, AlertCircle, RefreshCw } from 'lucide-react';
 import Link from "next/link";
+import Image from "next/image";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -105,14 +106,16 @@ function Blog() {
                 >
                   {/* Cover Image */}
                   {blog.coverImageUrl ? (
-                    <div className="h-48 overflow-hidden">
-                      <img 
+                    <div className="h-48 overflow-hidden relative">
+                      <Image 
                         src={blog.coverImageUrl} 
                         alt={blog.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         onError={(e) => {
-                          e.target.style.display = 'none';
-                          e.target.parentNode.style.display = 'none';
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.parentNode.style.display = 'none';
                         }}
                       />
                     </div>
