@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { Calendar, User, Tag, Clock, AlertCircle, RefreshCw } from 'lucide-react';
+import Link from "next/link";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -14,7 +15,6 @@ function Blog() {
   const fetchBlogs = async () => {
     try {
       setLoading(true);
-      // In API routes or getServerSideProps
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/get-all-blogs`);
       const data = await response.json();
       
@@ -40,16 +40,10 @@ function Blog() {
     });
   };
 
-  const truncateContent = (content, maxLength = 200) => {
-    if (content.length <= maxLength) return content;
-    return content.substring(0, maxLength) + '...';
-  };
-
   const getReadingTime = (content) => {
     const wordsPerMinute = 200;
     const words = content.split(' ').length;
-    const readingTime = Math.ceil(words / wordsPerMinute);
-    return readingTime;
+    return Math.ceil(words / wordsPerMinute);
   };
 
   if (loading) {
@@ -101,81 +95,82 @@ function Blog() {
         ) : (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
             {blogs.map((blog) => (
-              <article 
+              <Link 
                 key={blog._id} 
-                className="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700 hover:border-[#5EFF7C] transition-all duration-300 hover:shadow-green-500/20 group"
+                href={`/blog/${blog.slug}`} 
+                className="block group"
               >
-                {/* Cover Image */}
-                {blog.coverImageUrl ? (
-                  <div className="h-48 overflow-hidden">
-                    <img 
-                      src={blog.coverImageUrl} 
-                      alt={blog.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.parentNode.style.display = 'none';
-                      }}
-                    />
-                  </div>
-                ) : (
-                  <div className="h-48 bg-gradient-to-br from-gray-700 to-gray-600 flex items-center justify-center">
-                    <svg className="w-12 h-12 text-[#5EFF7C] opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </div>
-                )}
-
-                {/* Content */}
-                <div className="p-6">
-                  {/* Tags */}
-                  {blog.tags && blog.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {blog.tags.slice(0, 3).map((tag, index) => (
-                        <span 
-                          key={index} 
-                          className="inline-flex items-center px-2 py-1 bg-gray-700 text-xs font-semibold text-[#5EFF7C] rounded-full"
-                        >
-                          <Tag className="w-3 h-3 mr-1" />
-                          {tag}
-                        </span>
-                      ))}
-                      {blog.tags.length > 3 && (
-                        <span className="inline-flex items-center px-2 py-1 bg-gray-700 text-xs font-semibold text-gray-400 rounded-full">
-                          +{blog.tags.length - 3} more
-                        </span>
-                      )}
+                <article 
+                  className="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700 hover:border-[#5EFF7C] transition-all duration-300 hover:shadow-green-500/20 group cursor-pointer"
+                >
+                  {/* Cover Image */}
+                  {blog.coverImageUrl ? (
+                    <div className="h-48 overflow-hidden">
+                      <img 
+                        src={blog.coverImageUrl} 
+                        alt={blog.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.parentNode.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div className="h-48 bg-gradient-to-br from-gray-700 to-gray-600 flex items-center justify-center">
+                      <svg className="w-12 h-12 text-[#5EFF7C] opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
                     </div>
                   )}
 
-                  {/* Title */}
-                  <h2 className="text-2xl font-bold text-white mb-3 group-hover:text-[#5EFF7C] cursor-pointer transition-colors duration-300">
-                    {blog.title}
-                  </h2>
+                  {/* Content */}
+                  <div className="p-6">
+                    {/* Tags */}
+                    {blog.tags && blog.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {blog.tags.slice(0, 3).map((tag, index) => (
+                          <span 
+                            key={index} 
+                            className="inline-flex items-center px-2 py-1 bg-gray-700 text-xs font-semibold text-[#5EFF7C] rounded-full"
+                          >
+                            <Tag className="w-3 h-3 mr-1" />
+                            {tag}
+                          </span>
+                        ))}
+                        {blog.tags.length > 3 && (
+                          <span className="inline-flex items-center px-2 py-1 bg-gray-700 text-xs font-semibold text-gray-400 rounded-full">
+                            +{blog.tags.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                    )}
 
+                    {/* Title */}
+                    <h2 className="text-2xl font-bold text-white mb-3 group-hover:text-[#5EFF7C] transition-colors duration-300">
+                      {blog.title}
+                    </h2>
 
-
-                  {/* Meta Information */}
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-6 pt-4 border-t border-gray-700">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center">
-                        <User className="w-4 h-4 mr-1 text-[#5EFF7C]" />
-                        <span className="text-gray-400">{blog.author.name}</span>
+                    {/* Meta Information */}
+                    <div className="flex items-center justify-between text-sm text-gray-500 mb-6 pt-4 border-t border-gray-700">
+                      <div className="flex items-center space-x-4">
+                        <div className="flex items-center">
+                          <User className="w-4 h-4 mr-1 text-[#5EFF7C]" />
+                          <span className="text-gray-400">{blog.author.name}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <Clock className="w-4 h-4 mr-1 text-[#5EFF7C]" />
+                          <span className="text-gray-400">{getReadingTime(blog.content)} min read</span>
+                        </div>
                       </div>
                       <div className="flex items-center">
-                        <Clock className="w-4 h-4 mr-1 text-[#5EFF7C]" />
-                        <span className="text-gray-400">{getReadingTime(blog.content)} min read</span>
+                        <Calendar className="w-4 h-4 mr-1 text-[#5EFF7C]" />
+                        <span className="text-gray-400">{formatDate(blog.createdAt)}</span>
                       </div>
-                    </div>
-                    <div className="flex items-center">
-                      <Calendar className="w-4 h-4 mr-1 text-[#5EFF7C]" />
-                      <span className="text-gray-400">{formatDate(blog.createdAt)}</span>
                     </div>
                   </div>
-
-
-                </div>
-              </article>
+                </article>
+              </Link>
             ))}
           </div>
         )}
