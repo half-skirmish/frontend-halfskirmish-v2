@@ -4,6 +4,32 @@ import { Calendar, User, Tag, Clock, AlertCircle, RefreshCw } from 'lucide-react
 import Link from "next/link";
 import Image from "next/image";
 
+// Custom Image component with error handling using regular img tag
+const SafeImage = ({ src, alt, className, fill, sizes, ...props }) => {
+  const [imageError, setImageError] = useState(false);
+
+  if (imageError || !src) {
+    return (
+      <div className={`bg-gradient-to-br from-gray-700 to-gray-600 flex items-center justify-center ${className} ${fill ? 'absolute inset-0' : 'w-full h-full'}`}>
+        <svg className="w-12 h-12 text-[#5EFF7C] opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={`${className} ${fill ? 'absolute inset-0 w-full h-full' : ''}`}
+      onError={() => setImageError(true)}
+      loading="lazy"
+      {...props}
+    />
+  );
+};
+
 function Blog() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -105,27 +131,15 @@ function Blog() {
                   className="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700 hover:border-[#5EFF7C] transition-all duration-300 hover:shadow-green-500/20 group cursor-pointer"
                 >
                   {/* Cover Image */}
-                  {blog.coverImageUrl ? (
-                    <div className="h-48 overflow-hidden relative">
-                      <Image 
-                        src={blog.coverImageUrl} 
-                        alt={blog.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                          e.currentTarget.parentNode.style.display = 'none';
-                        }}
-                      />
-                    </div>
-                  ) : (
-                    <div className="h-48 bg-gradient-to-br from-gray-700 to-gray-600 flex items-center justify-center">
-                      <svg className="w-12 h-12 text-[#5EFF7C] opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                    </div>
-                  )}
+                  <div className="h-48 overflow-hidden relative">
+                    <SafeImage 
+                      src={blog.coverImageUrl} 
+                      alt={blog.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
 
                   {/* Content */}
                   <div className="p-6">
