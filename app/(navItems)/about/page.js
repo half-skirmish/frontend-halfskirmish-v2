@@ -119,19 +119,19 @@ const skills = [
 const projects = [
   {
     title: "Geolocation Weather App",
-    description: "A weather app that fetches real-time weather data based on user's geolocation using Free WeatherAPI.",
+    description: "A weather app that fetches real-time weather data based on user&apos;s geolocation using Free WeatherAPI.",
     techStack: ["Next.js", "Tailwind CSS", "WeatherAPI", "React Charts"],
     liveUrl: "https://weather.halfskirmish.com",
     repoUrl: "https://github.com/naman-1905/Weather-App",
   },
-      {
+  {
     title: "Astra Bot",
     description: "A Chatbot built using Gemma 1 Billion parameters model.",
-    techStack: ["Next.js", "Tailwind CSS", "Google Gemma API", "Vercel's New Streamdown Feature"],
+    techStack: ["Next.js", "Tailwind CSS", "Google Gemma API", "Vercel&apos;s New Streamdown Feature"],
     repoUrl: "https://github.com/naman-1905/AI-Chatbot",
     liveUrl: "https://chat.halfskirmish.com",
   },
-    {
+  {
     title: "Half Skirmish Portfolio & Blog",
     description: "A portfolio website showcasing my projects, skills, and experience.",
     techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Dynamic Routing"],
@@ -152,13 +152,12 @@ const projects = [
     liveUrl: "https://kahichandev.halfskirmish.com/",
     repoUrl: "https://github.com/kahitoz-infra/kahitoz-japanese-app",
   },
-   {
+  {
     title: "Blog Admin Panel",
     description: "A Blog Admin Panel built using Next.js, Tailwind CSS, MongoDB and Express.js.",
     techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Dynamic Routing"],
     repoUrl: "https://github.com/half-skirmish/backend-halfskirmish",
   }
-
 ];
 
 // --- Main Page Component ---
@@ -186,10 +185,10 @@ function AboutMe() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-4xl sm:text-5xl font-bold text-center text-white mb-12">Let's Connect</h2>
+          <h2 className="text-4xl sm:text-5xl font-bold text-center text-white mb-12">Let&apos;s Connect</h2>
           <div className="max-w-2xl mx-auto">
             <p className="text-gray-400 text-center mb-8 text-lg">
-              I'm always open to discussing new opportunities, collaborating on interesting projects, or just having a chat about technology and development.
+              I&apos;m always open to discussing new opportunities, collaborating on interesting projects, or just having a chat about technology and development.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               <ContactButton 
