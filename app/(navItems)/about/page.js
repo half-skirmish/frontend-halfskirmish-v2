@@ -132,7 +132,7 @@ const projects = [
     liveUrl: "https://chat.halfskirmish.com",
   },
     {
-    title: "Half Skirmish Portfolio",
+    title: "Half Skirmish Portfolio & Blog",
     description: "A portfolio website showcasing my projects, skills, and experience.",
     techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Dynamic Routing"],
     liveUrl: "/",
