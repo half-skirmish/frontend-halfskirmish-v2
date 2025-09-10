@@ -44,7 +44,7 @@ const Navbar = () => {
     { label: 'Home', href: '/' },
     { label: 'Work', href: '/work' },
     { label: 'Blog', href: '/blog' },
-    { label: 'About Me', href: '/about-me' },
+    { label: 'About', href: '/about' },
     { label: 'AI Chat', href: 'https://chat.halfskirmish.com', external: true },
   ];
 
