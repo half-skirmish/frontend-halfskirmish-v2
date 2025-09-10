@@ -61,26 +61,26 @@ export default async function BlogPost({ params }) {
   }
   
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="bg-gray-900 text-white min-h-screen font-sans">
       <article className="max-w-4xl mx-auto px-4 py-8">
         {/* Header Section */}
-        <header className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+        <header className="py-15">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
             {blog.title}
           </h1>
           
           {/* Meta Information */}
-          <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-6">
+          <div className="flex flex-wrap items-center gap-4 text-white mb-6">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                <span className="text-sm font-medium text-gray-700">
+              <div className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center border border-[#5EFF7C]">
+                <span className="text-sm font-medium">
                   {blog.author.name.charAt(0)}
                 </span>
               </div>
-              <span className="font-medium">{blog.author.name}</span>
+              <span className="font-medium text-white">{blog.author.name}</span>
             </div>
             
-            <span className="text-gray-400">•</span>
+            <span className="text-gray-600">•</span>
             
             <time dateTime={blog.createdAt} className="text-sm">
               {formatDate(blog.createdAt)}
@@ -88,7 +88,7 @@ export default async function BlogPost({ params }) {
             
             {blog.updatedAt !== blog.createdAt && (
               <>
-                <span className="text-gray-400">•</span>
+                <span className="text-gray-600">•</span>
                 <span className="text-sm">
                   Updated {formatDate(blog.updatedAt)}
                 </span>
@@ -101,7 +101,7 @@ export default async function BlogPost({ params }) {
             {blog.tags.map((tag, index) => (
               <span
                 key={index}
-                className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full"
+                className="px-3 py-1 bg-gray-800 border border-gray-700 text-[#5EFF7C] text-sm font-medium rounded-full hover:border-[#5EFF7C] transition-colors duration-300"
               >
                 {tag}
               </span>
@@ -111,7 +111,7 @@ export default async function BlogPost({ params }) {
         
         {/* Cover Image */}
         {blog.coverImageUrl && (
-          <div className="mb-8 rounded-lg overflow-hidden shadow-lg">
+          <div className="mb-8 rounded-lg overflow-hidden shadow-lg border border-gray-700 hover:border-[#5EFF7C] transition-colors duration-300">
             <Image
               src={blog.coverImageUrl}
               alt={blog.title}
@@ -124,26 +124,26 @@ export default async function BlogPost({ params }) {
         )}
         
         {/* Content */}
-        <div className="prose prose-lg prose-gray max-w-none">
-          <div className="bg-white rounded-lg p-8 shadow-sm border">
-            <div className="text-gray-800 leading-relaxed whitespace-pre-wrap">
+        <div className="prose prose-lg prose-invert max-w-none">
+          <div className="bg-gray-800 rounded-lg p-8 shadow-lg border border-gray-700">
+            <div className="text-gray-200 leading-relaxed whitespace-pre-wrap">
               {blog.content}
             </div>
           </div>
         </div>
         
         {/* Footer */}
-        <footer className="mt-12 pt-8 border-t border-gray-200">
+        <footer className="mt-12 pt-8 border-t border-gray-700">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center">
-                <span className="text-lg font-medium text-gray-700">
+              <div className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center border-2 border-[#5EFF7C]">
+                <span className="text-lg font-medium">
                   {blog.author.name.charAt(0)}
                 </span>
               </div>
               <div>
-                <p className="font-medium text-gray-900">{blog.author.name}</p>
-                <p className="text-sm text-gray-600">Author</p>
+                <p className="font-medium text-white">{blog.author.name}</p>
+                <p className="text-sm text-gray-400">Author</p>
               </div>
             </div>
             
