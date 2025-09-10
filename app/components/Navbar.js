@@ -43,7 +43,6 @@ const Navbar = () => {
   const navItems = [
     { label: 'Home', href: '/' },
     { label: 'Work', href: '/work' },
-    { label: 'Blog', href: '/blog' },
     { label: 'About', href: '/about' },
     { label: 'AI Chat', href: 'https://chat.halfskirmish.com', external: true },
   ];
