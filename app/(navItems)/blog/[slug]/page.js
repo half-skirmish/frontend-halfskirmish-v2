@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 async function getBlogPost(slug) {
   try {
-    const res = await fetch(`http://localhost:5000/blog/${slug}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/${slug}`, {
       cache: 'no-store', // or 'force-cache' depending on your needs
     });
     
