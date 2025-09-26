@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME      = "halfskirmish_portfolio"
         TAG             = "latest"
-        REGISTRY        = "10.243.4.236:5000"
+        REGISTRY        = "10.243.250.132:5000"
         DEPLOYMENT_NAME = "halfskirmish-portfolio"
         DOCKER_HOST     = "tcp://10.243.52.185:2375"
         APP_NETWORK     = "app"
