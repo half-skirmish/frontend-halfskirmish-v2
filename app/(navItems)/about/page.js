@@ -107,6 +107,9 @@ const skills = [
     { name: "PostgreSQL", icon: <CodeIcon /> },
     { name: "Tailwind CSS", icon: <CodeIcon /> },
     { name: "HTML5 & CSS3", icon: <CodeIcon /> },
+    { name: "Python", icon: <CodeIcon /> },
+    { name: "FastAPI", icon: <CodeIcon /> },
+    { name: "Flask", icon: <CodeIcon /> },
     { name: "Git & GitHub", icon: <CodeIcon /> },
     { name: "Adobe Photoshop", icon: <PaintbrushIcon /> },
     { name: "Adobe Illustrator", icon: <PaintbrushIcon /> },
@@ -125,11 +128,11 @@ const projects = [
     repoUrl: "https://github.com/naman-1905/Weather-App",
   },
   {
-    title: "Astra Bot",
+    title: "Astro Bot - My AI Chatbot",
     description: "A Chatbot built using Gemma 1 Billion parameters model.",
-    techStack: ["Next.js", "Tailwind CSS", "Google Gemma API", "Vercel&apos;s New Streamdown Feature"],
+    techStack: ["Next.js", "Tailwind CSS", "Google Gemma API"],
     repoUrl: "https://github.com/naman-1905/AI-Chatbot",
-    liveUrl: "https://chat.halfskirmish.com",
+    liveUrl: "https://ai.halfskirmish.com",
   },
   {
     title: "Half Skirmish Portfolio & Blog",
@@ -149,13 +152,14 @@ const projects = [
     title: "Kahichan Japanese App",
     description: "A Japanese learning app with flashcards, quizzes, and spaced repetition to help users master the language effectively.",
     techStack: ["NextJS", "MongoDB", "Tailwind CSS", "PostGreSQL", "FastAPI"],
-    liveUrl: "https://kahichandev.halfskirmish.com/",
+    liveUrl: "https://kahichan.com",
     repoUrl: "https://github.com/kahitoz-infra/kahitoz-japanese-app",
   },
   {
     title: "Blog Admin Panel",
     description: "A Blog Admin Panel built using Next.js, Tailwind CSS, MongoDB and Express.js.",
     techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Dynamic Routing"],
+    liveUrl: "https://admin.halfskirmish.com",
     repoUrl: "https://github.com/half-skirmish/backend-halfskirmish",
   }
 ];
