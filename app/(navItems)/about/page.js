@@ -121,11 +121,25 @@ const skills = [
 
 const projects = [
   {
+    title: "Expense Tracker App",
+    description: "A Personal Expense Tracker App built using Next.js, Tailwind CSS, and various microservices, each of which handles Authentication, CRUD Operations and Fetching History.",
+    techStack: ["Next.js", "Tailwind CSS", "PostgreSQL", "FastAPI", "Express.js","Flask", "React Charts"],
+    liveUrl: "https://expenses.halfskirmish.com",
+    repoUrl: "https://github.com/naman-1905/Expense-Tracker-FE",
+  },
+  {
     title: "Geolocation Weather App",
     description: "A weather app that fetches real-time weather data based on user&apos;s geolocation using Free WeatherAPI.",
     techStack: ["Next.js", "Tailwind CSS", "WeatherAPI", "React Charts"],
     liveUrl: "https://weather.halfskirmish.com",
     repoUrl: "https://github.com/naman-1905/Weather-App",
+  },
+  {
+    title: "Kahichan Japanese App",
+    description: "A Japanese learning app with flashcards, quizzes, and spaced repetition to help users master the language effectively.",
+    techStack: ["NextJS", "MongoDB", "Tailwind CSS", "PostGreSQL", "FastAPI"],
+    liveUrl: "https://kahichan.com",
+    repoUrl: "https://github.com/kahitoz-infra/kahitoz-japanese-app",
   },
   {
     title: "Astro Bot - My AI Chatbot",
@@ -134,14 +148,7 @@ const projects = [
     repoUrl: "https://github.com/naman-1905/AI-Chatbot",
     liveUrl: "https://ai.halfskirmish.com",
   },
-  {
-    title: "Half Skirmish Portfolio & Blog",
-    description: "A portfolio website showcasing my projects, skills, and experience.",
-    techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Dynamic Routing"],
-    liveUrl: "/",
-    repoUrl: "https://github.com/half-skirmish/frontend-halfskirmish-v2",
-  },
-  {
+   {
     title: "Notes App",
     description: "A Note taking App built using Next.js, Tailwind CSS, MongoDB and Express.js.",
     techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Express.js", "React Modules"],
@@ -149,11 +156,11 @@ const projects = [
     repoUrl: "https://github.com/naman-1905/Notes-App",
   },
   {
-    title: "Kahichan Japanese App",
-    description: "A Japanese learning app with flashcards, quizzes, and spaced repetition to help users master the language effectively.",
-    techStack: ["NextJS", "MongoDB", "Tailwind CSS", "PostGreSQL", "FastAPI"],
-    liveUrl: "https://kahichan.com",
-    repoUrl: "https://github.com/kahitoz-infra/kahitoz-japanese-app",
+    title: "Half Skirmish Portfolio & Blog",
+    description: "A portfolio website showcasing my projects, skills, and experience.",
+    techStack: ["Next.js", "Tailwind CSS", "MongoDB", "Dynamic Routing"],
+    liveUrl: "/",
+    repoUrl: "https://github.com/half-skirmish/frontend-halfskirmish-v2",
   },
   {
     title: "Blog Admin Panel",
