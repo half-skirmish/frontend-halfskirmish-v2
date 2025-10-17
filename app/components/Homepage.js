@@ -50,7 +50,7 @@ const Homepage = () => {
 
            <a
             href="/Naman_Chaturvedi_Resume.pdf"
-            download="Naman_Chaturvedi_Resume.pdf"
+            download="Naman Chaturvedi's Resume.pdf"
             className="bg-white text-black font-semibold px-6 py-2 rounded-lg hover:bg-[#4cd868] transition duration-300 text-lg"
           >
             Download Resume
