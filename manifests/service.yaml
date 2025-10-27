@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: naman-portfolio
+  namespace: apps
+  labels:
+    app: naman-portfolio
+    component: backend
+spec:
+  selector:
+    app: naman-portfolio
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+  type: ClusterIP

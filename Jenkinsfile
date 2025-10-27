@@ -1,143 +1,105 @@
 pipeline {
     agent any
-
+    options {
+        skipDefaultCheckout(true)
+        timestamps()
+    }
     parameters {
-        choice(
-            name: 'DEPLOY_TARGET',
-            choices: ['both', 'kahitoz', 'naman'],
-            description: 'Select where to deploy the container'
-        )
+        choice(name: 'K3S_TARGET', choices: ['KAHITOZ', 'NAMAN', 'BOTH'], description: 'Select the K3s node(s) to deploy to')
     }
-
     environment {
-        IMAGE_NAME = 'halfskirmish-portfolio'
+        IMAGE_NAME = 'naman-portfolio'
         IMAGE_TAG = 'latest'
-        BUILD_REGISTRY = 'registrypush.kahitoz.com:5000'
-        DEPLOY_REGISTRY = 'registry.kahitoz.com'
-
-        KAHITOZ_DOCKER_HOST = 'tcp://kahitozrunner:2375'
-        NAMAN_DOCKER_HOST = 'tcp://naman:2375'
-
-        CONTAINER_NAME = 'halfskirmish-portfolio'
-        NETWORK_NAME = 'app'
+        REG1 = 'registrypush.kahitoz.com:5000'
+        REG2 = 'registry.kahitoz.com'
+        K8S_NAMESPACE = 'apps'
+        DEPLOYMENT_NAME = 'naman-portfolio'
+        MANIFESTS_DIR = 'manifests'
+        KUBECONFIG_KAHITOZ = '/home/jenkins/.kubekahitoz/config'
+        KUBECONFIG_NAMAN = '/home/jenkins/.kubenaman/config'
+        DOCKER_CRED_ID = 'docker_creds'
+        BUILT_IMAGE = ''
     }
-
     stages {
+        stage('Checkout SCM') {
+            steps {
+                script {
+                    checkout scm
+                    env.BUILT_IMAGE = "${env.IMAGE_NAME}:${env.IMAGE_TAG}"
+                }
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    echo "Building Docker image: ${IMAGE_NAME}:${IMAGE_TAG}"
-                    sh """
-                        docker build -t ${BUILD_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} .
-                    """
+                    def buildStage = load('jenkins-stages/buildImage.groovy')
+                    buildStage.run([
+                        imageName  : env.IMAGE_NAME,
+                        buildContext: '.',
+                        dockerfile : 'Dockerfile'
+                    ])
                 }
             }
         }
 
-        stage('Push Docker Images') {
+        stage('Push Docker Image') {
             steps {
                 script {
-                    echo "Logging into Docker registries..."
-                    withCredentials([usernamePassword(credentialsId: 'docker_creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                        sh '''
-                            echo "$DOCKER_PASS" | docker login ''' + BUILD_REGISTRY + ''' -u "$DOCKER_USER" --password-stdin
-                            echo "$DOCKER_PASS" | docker login ''' + DEPLOY_REGISTRY + ''' -u "$DOCKER_USER" --password-stdin
-                        '''
+                    def pushStage = load('jenkins-stages/pushImage.groovy')
+                    def localBuiltImage = env.BUILT_IMAGE?.trim()
+                    if (!localBuiltImage) {
+                        localBuiltImage = "${env.IMAGE_NAME}:${env.IMAGE_TAG}"
                     }
-
-                    echo "Pushing image to ${BUILD_REGISTRY}..."
-                    sh """
-                        docker push ${BUILD_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
-                    """
-
-                    echo "Re-tagging and pushing to ${DEPLOY_REGISTRY}..."
-                    sh """
-                        docker tag ${BUILD_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} ${DEPLOY_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
-                        docker push ${DEPLOY_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
-                    """
-
-                    echo "Logout from registries"
-                    sh """
-                        docker logout ${BUILD_REGISTRY} || true
-                        docker logout ${DEPLOY_REGISTRY} || true
-                    """
+                    pushStage.run([
+                        builtImage   : localBuiltImage,
+                        registryPush : env.REG1,
+                        registryPull : env.REG2,
+                        imageName    : env.IMAGE_NAME,
+                        imageTag     : env.IMAGE_TAG,
+                        credentialsId: env.DOCKER_CRED_ID
+                    ])
                 }
             }
         }
 
-        stage('Deploy to Docker Hosts') {
-            parallel {
+        stage('Check Deployment and Deploy') {
+            steps {
+                script {
+                    def deployStage = load('jenkins-stages/deploy.groovy')
 
-                stage('Deploy to Kahitoz') {
-                    when {
-                        anyOf {
-                            expression { params.DEPLOY_TARGET == 'both' }
-                            expression { params.DEPLOY_TARGET == 'kahitoz' }
-                        }
+                    List<String> targets
+                    switch (params.K3S_TARGET) {
+                        case 'BOTH':
+                            targets = ['KAHITOZ', 'NAMAN']
+                            break
+                        case 'KAHITOZ':
+                            targets = ['KAHITOZ']
+                            break
+                        case 'NAMAN':
+                            targets = ['NAMAN']
+                            break
+                        default:
+                            error "Unsupported K3S_TARGET value: ${params.K3S_TARGET}"
                     }
-                    steps {
-                        script {
-                            echo "Deploying to Kahitoz Docker host..."
-                            withCredentials([usernamePassword(credentialsId: 'docker_creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                                sh '''
-                                    echo "$DOCKER_PASS" | DOCKER_HOST=''' + KAHITOZ_DOCKER_HOST + ''' docker login ''' + DEPLOY_REGISTRY + ''' -u "$DOCKER_USER" --password-stdin
-                                    DOCKER_HOST=''' + KAHITOZ_DOCKER_HOST + ''' docker stop ''' + CONTAINER_NAME + ''' || true
-                                    DOCKER_HOST=''' + KAHITOZ_DOCKER_HOST + ''' docker rm ''' + CONTAINER_NAME + ''' || true
-                                    DOCKER_HOST=''' + KAHITOZ_DOCKER_HOST + ''' docker pull ''' + DEPLOY_REGISTRY + '''/''' + IMAGE_NAME + ''':''' + IMAGE_TAG + '''
-                                    DOCKER_HOST=''' + KAHITOZ_DOCKER_HOST + ''' docker run -d \
-                                        --name ''' + CONTAINER_NAME + ''' \
-                                        --network ''' + NETWORK_NAME + ''' \
-                                        --restart always \
-                                        ''' + DEPLOY_REGISTRY + '''/''' + IMAGE_NAME + ''':''' + IMAGE_TAG + '''
-                                    DOCKER_HOST=''' + KAHITOZ_DOCKER_HOST + ''' docker logout ''' + DEPLOY_REGISTRY + ''' || true
-                                '''
-                            }
-                        }
-                    }
-                }
 
-                stage('Deploy to Naman') {
-                    when {
-                        anyOf {
-                            expression { params.DEPLOY_TARGET == 'both' }
-                            expression { params.DEPLOY_TARGET == 'naman' }
-                        }
-                    }
-                    steps {
-                        script {
-                            echo "Deploying to Naman Docker host..."
-                            withCredentials([usernamePassword(credentialsId: 'docker_creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                                sh '''
-                                    echo "$DOCKER_PASS" | DOCKER_HOST=''' + NAMAN_DOCKER_HOST + ''' docker login ''' + DEPLOY_REGISTRY + ''' -u "$DOCKER_USER" --password-stdin
-                                    DOCKER_HOST=''' + NAMAN_DOCKER_HOST + ''' docker stop ''' + CONTAINER_NAME + ''' || true
-                                    DOCKER_HOST=''' + NAMAN_DOCKER_HOST + ''' docker rm ''' + CONTAINER_NAME + ''' || true
-                                    DOCKER_HOST=''' + NAMAN_DOCKER_HOST + ''' docker pull ''' + DEPLOY_REGISTRY + '''/''' + IMAGE_NAME + ''':''' + IMAGE_TAG + '''
-                                    DOCKER_HOST=''' + NAMAN_DOCKER_HOST + ''' docker run -d \
-                                        --name ''' + CONTAINER_NAME + ''' \
-                                        --network ''' + NETWORK_NAME + ''' \
-                                        --restart always \
-                                        ''' + DEPLOY_REGISTRY + '''/''' + IMAGE_NAME + ''':''' + IMAGE_TAG + '''
-                                    DOCKER_HOST=''' + NAMAN_DOCKER_HOST + ''' docker logout ''' + DEPLOY_REGISTRY + ''' || true
-                                '''
-                            }
-                        }
-                    }
+                    deployStage.run([
+                        namespace: env.K8S_NAMESPACE,
+                        deploymentName: env.DEPLOYMENT_NAME,
+                        manifestsDir: env.MANIFESTS_DIR,
+                        kubeconfigKahitoz: env.KUBECONFIG_KAHITOZ,
+                        kubeconfigNaman: env.KUBECONFIG_NAMAN,
+                        credentialsId: env.DOCKER_CRED_ID,
+                        registryPull: env.REG2,
+                        targets: targets
+                    ])
                 }
             }
         }
     }
-
     post {
-        cleanup {
-            script {
-                echo "Cleaning up local Docker images..."
-                sh """
-                    docker rmi ${BUILD_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} || true
-                    docker rmi ${DEPLOY_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} || true
-                    docker system prune -f || true
-                """
-            }
+        always {
+            cleanWs()
         }
     }
 }
