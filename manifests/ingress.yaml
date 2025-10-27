@@ -17,4 +17,4 @@ spec:
               service:
                 name: naman-portfolio
                 port:
-                  number: 80
+                  number: 5000
